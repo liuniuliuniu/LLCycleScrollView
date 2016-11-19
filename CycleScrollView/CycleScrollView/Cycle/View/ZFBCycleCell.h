@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ZFBCycleCell.h
 //  图片轮播器
 //
 //  Created by liushaohua on 16/8/21.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ZFBCycleCell : UICollectionViewCell
 
+@property (nonatomic, strong)NSIndexPath *indexPath;
 
 @end
-
