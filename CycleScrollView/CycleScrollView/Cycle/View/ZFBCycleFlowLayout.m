@@ -13,21 +13,10 @@
 -(void)prepareLayout
 {
     [super prepareLayout];
-    
-    //尺寸
     self.itemSize = self.collectionView.bounds.size;
     self.minimumLineSpacing = 0;
-    self.minimumInteritemSpacing = 0;   
-    //滚动方向
+    self.minimumInteritemSpacing = 0;
     self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    
-    
-    
-    
-    
-    
-    
 }
-
 
 @end
