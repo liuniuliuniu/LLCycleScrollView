@@ -30,7 +30,7 @@ static NSString *cellID = @"cellID";
 {
     if (self = [super initWithFrame:frame]) {
         self.pageControlAliment = LLCycleScrollViewPageContolAlimentCenter;
-        
+        _autoScrollTimeInterval = 1.0f;
         [self setupMainView];
     }
     return self;
@@ -50,6 +50,16 @@ static NSString *cellID = @"cellID";
     
     _flowLayout.itemSize = self.frame.size;
 }
+
+- (void)setAutoScrollTimeInterval:(CGFloat)autoScrollTimeInterval{
+    _autoScrollTimeInterval = autoScrollTimeInterval;
+    
+    [_timer invalidate];
+    _timer = nil;
+    [self setupTimer];
+}
+
+
 // 设置显示图片的collectionView
 - (void)setupMainView
 {
@@ -103,7 +113,7 @@ static NSString *cellID = @"cellID";
 
 - (void)setupTimer
 {
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(automaticScroll) userInfo:nil repeats:YES];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:self.autoScrollTimeInterval target:self selector:@selector(automaticScroll) userInfo:nil repeats:YES];
     _timer = timer;
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
@@ -117,14 +127,17 @@ static NSString *cellID = @"cellID";
         [_mainView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_totalItemsCount * 0.5 inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
     }
     
+    
     CGSize size = [_pageControl sizeForNumberOfPages:self.imagesGroup.count];
+    
     CGFloat x = (self.width - size.width) * 0.5;
     if (self.pageControlAliment == LLCycleScrollViewPageContolAlimentRight) {
         x = self.mainView.width - size.width - 10;
     }
-    CGFloat y = self.mainView.height - size.height - 10;
+    CGFloat y = self.mainView.height - size.height;
     _pageControl.frame = CGRectMake(x, y, size.width, size.height);
-    [_pageControl sizeToFit];
+    
+//    [_pageControl sizeToFit];
 }
 
 #pragma mark - UICollectionViewDataSource

@@ -24,9 +24,13 @@ typedef enum {
 
 
 @interface LLCycleScrollView : UIView
-
+/**图片数组*/
 @property (nonatomic, strong) NSArray *imagesGroup;
+/**文字标题数组*/
 @property (nonatomic, strong) NSArray *titlesGroup;
+/**时间间隔*/
+@property (nonatomic, assign) CGFloat autoScrollTimeInterval;
+/**指示器的位置*/
 @property (nonatomic, assign) LLCycleScrollViewPageContolAliment pageControlAliment;
 @property (nonatomic, weak) id<LLCycleScrollViewDelegate> delegate;
 
