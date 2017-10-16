@@ -1,6 +1,7 @@
 # Swift's LLCycleScrollView
 
 
+![LLCycleScrollView](https://github.com/liuniuliuniu/LLCycleScrollView/blob/master/LLCycleScrollView.gif)
 
 ### 如何添加
 
